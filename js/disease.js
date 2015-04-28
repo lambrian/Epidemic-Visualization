@@ -1,21 +1,3 @@
-// while (current-generation-infected is not empty || MAX_ITERATIONS):
-// next-generation-infected = empty set
-// for all current infected U
-//    for all neighbors V
-//        if randomBool (infectionRate) && isSusceptible(v):
-//          add V to next generation infected with infectionRemaining = D
-// 
-// for all nodes U in current infected:
-//    infection duration -= 1
-//    if (infectionRemaining == 0):
-//        if (randomBool (mortalityRate)):
-//          insert into dead population
-//        else:
-//          insert into susceptible population
-//    else:
-//        insert into next generation current infected 
-//  current-generation-infected = next-generation-infected
-
 function simulate (cy, infectionRate, infectionDuration, mortalityRate, numberInitialInfected) {
 
   MAX_ITERATIONS = 100;
@@ -74,3 +56,21 @@ function advance(cy, infectionRate, infectionDuration, mortalityRate) {
 
   return cy.filter('node[status = "infected"]').size();
 }
+
+// while (current-generation-infected is not empty || MAX_ITERATIONS):
+// next-generation-infected = empty set
+// for all current infected U
+//    for all neighbors V
+//        if randomBool (infectionRate) && isSusceptible(v):
+//          add V to next generation infected with infectionRemaining = D
+// 
+// for all nodes U in current infected:
+//    infection duration -= 1
+//    if (infectionRemaining == 0):
+//        if (randomBool (mortalityRate)):
+//          insert into dead population
+//        else:
+//          insert into susceptible population
+//    else:
+//        insert into next generation current infected 
+//  current-generation-infected = next-generation-infected
