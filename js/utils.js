@@ -19,7 +19,7 @@ function generateRandomGraph(numNodes) {
 
   for (var s = 0; s < numNodes; s++) {
     for (var t = 0; t < numNodes; t++) {
-      var edgeProb = Math.floor(s/10) == Math.floor(t/10) ? 0.9 : 0.01;
+      var edgeProb = Math.floor(s/10) == Math.floor(t/10) ? 0.4 : 0.001;
       if (randomBool(edgeProb) && s != t && s < t) {
         var edgeData = { id : '' + s + t, weight: 1, source: '' + s, target: '' + t};
         graph.edges.push({data: edgeData});
