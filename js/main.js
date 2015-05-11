@@ -1,70 +1,44 @@
-$(function(){ // on dom ready
-
-var cy = cytoscape({
-  container: document.getElementById('cy'),
-  
-  style: cytoscape.stylesheet()
-    .selector('node')
-      .css({
-        'content': 'data(id)'
-      })
-    .selector('edge')
-      .css({
-        'target-arrow-shape': 'triangle',
-        'width': 4,
-        'line-color': '#ddd',
-        'target-arrow-color': '#ddd'
-      })
-    .selector('.highlighted')
-      .css({
-        'background-color': '#61bffc',
-        'line-color': '#61bffc',
-        'target-arrow-color': '#61bffc',
-        'transition-property': 'background-color, line-color, target-arrow-color',
-        'transition-duration': '0.5s'
-      }),
-  
-  elements: {
-      nodes: [
-        { data: { id: 'a' } },
-        { data: { id: 'b' } },
-        { data: { id: 'c' } },
-        { data: { id: 'd' } },
-        { data: { id: 'e' } }
-      ], 
-      
-      edges: [
-        { data: { id: 'a"e', weight: 1, source: 'a', target: 'e' } },
-        { data: { id: 'ab', weight: 3, source: 'a', target: 'b' } },
-        { data: { id: 'be', weight: 4, source: 'b', target: 'e' } },
-        { data: { id: 'bc', weight: 5, source: 'b', target: 'c' } },
-        { data: { id: 'ce', weight: 6, source: 'c', target: 'e' } },
-        { data: { id: 'cd', weight: 2, source: 'c', target: 'd' } },
-        { data: { id: 'de', weight: 7, source: 'd', target: 'e' } }
-      ]
-    },
-  
-  layout: {
-    name: 'breadthfirst',
-    directed: true,
-    roots: '#a',
-    padding: 10
-  }
+$(function() {
+  var network = loadInitialNetwork(120);
 });
-  
-var bfs = cy.elements().bfs('#a', function(){}, true);
 
-var i = 0;
-var highlightNextEle = function(){
-  bfs.path[i].addClass('highlighted');
-  
-  if( i < bfs.path.length ){
-    i++;
-    setTimeout(highlightNextEle, 1000);
-  }
-};
+function updateSIR() {
 
-// kick off first highlight
-highlightNextEle();
+  statusCount = {};
+  statusCount['susceptible'] = 0;
+  statusCount['infected'] = 0;
+  statusCount['dead'] = 0;
 
-}); // on dom ready
+  cy.nodes().forEach(function(u) {
+    statusCount[u.data('status')]++;
+  });
+
+  var numNodes = cy.nodes().length;
+  $("#sir-susceptible").height(statusCount['susceptible'] / numNodes * 100 + '%');
+  $("#sir-infected").height(statusCount['infected'] / numNodes * 100 + '%');
+  $("#sir-dead").height(statusCount['dead'] / numNodes * 100 + '%');
+
+}
+
+$("#startSimulate").click(function() {
+  beginSimulation($("#infection-rate").val(),
+           $("#contagious").val(),
+           $("#mortality-rate").val(),
+           $("#initial-infected").val()
+           );
+
+  sirChart = setInterval(function () { updateSIR(); }, 1000);
+});
+
+$("#reset").click(function() {
+  reset(cy);
+  clearInterval(sirChart);
+  updateSIR();
+})
+
+
+function beginSimulation (infectionRate, timeOfContagious, mortalityRate, initialInfected) {
+  console.log(infectionRate, timeOfContagious, mortalityRate,
+              initialInfected);
+  simulate (cy, infectionRate, timeOfContagious, mortalityRate, initialInfected);
+}

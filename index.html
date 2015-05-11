@@ -3,12 +3,52 @@
     <head>
         <link href="css/style.css" rel="stylesheet" />
         <meta charset=utf-8 />
-        <title>Cytoscape.js initialisation</title>
-        <script src="js/jquery.min.js"></script>
-        <script src="js/cytoscape.min.js"></script>
-        <script src="js/main.js"></script>
+        <title>Disease Visualization</title>
     </head>
     <body>
         <div id="cy"></div>
+        <div id="sidebar">
+            <p>Disease Information</p>
+
+            <!-- Select Diseases -->
+
+
+            <!-- Disease Characteristics -->
+
+            <!-- Infection Rate -->
+            <p><p><label name="infection-rate">Infection Rate</input></p>
+            <input id="infection-rate" name="infection-rate" value="0.5"></input>
+
+            <!-- Contagious for -->
+            <p><label name="contagious">Time of Contagiousness</label></p>
+            <input id="contagious" name="contagious" value=2></input>
+
+            <!-- Mortality Rate -->
+            <p><label name="mortality-rate">Mortality Rate</label></p>
+            <input id="mortality-rate" name="mortality-rate" value=0.1></input>
+
+            <!-- Initial Count -->
+            <p><label name="initial-infected">Initial # Infected</label></p>
+            <input id="initial-infected" name="initial-infected" value=5></input>
+
+            <p></p>
+            <p><button id="startSimulate">Start Simulation</button></p>
+
+            <p><button id="reset">Reset Graph</button></p>
+
+            <div id="sir">
+                <div class="sir" id="sir-susceptible">Susceptible</div>
+                <div class="sir" id="sir-infected">Infected</div>
+                <div class="sir" id="sir-dead">Dead</div>
+            </div>
+
+        </div>
+        
+        <script src="js/jquery.min.js"></script>
+        <script src="js/cytoscape.min.js"></script>
+        <script src="js/utils.js"></script>
+        <script src="js/graph.js"></script>
+        <script src="js/disease.js"></script>
+        <script src="js/main.js"></script>
     </body>
 </html>

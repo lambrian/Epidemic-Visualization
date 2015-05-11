@@ -5,9 +5,48 @@ body
 
 #cy
 {
-  height: 50%;
-  width: 50%;
+  height: 100%;
+  width: 80%;
   position: absolute;
   left: 0;
   top: 0;
+}
+
+#sidebar
+{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 200px;
+    height: 100%;
+}
+
+#sir
+{
+  height: 200px;
+  width: 90%;
+  border: 2px solid black;
+}
+
+.sir
+{
+  width: 100%;
+  height: 0;
+  overflow: hidden;
+  color: white;
+}
+
+#sir-susceptible
+{
+  background-color: blue;
+}
+
+#sir-infected
+{
+  background-color: red;
+}
+
+#sir-dead
+{
+  background-color: black;
 }
