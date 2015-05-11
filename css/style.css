@@ -36,17 +36,25 @@ body
   color: white;
 }
 
-#sir-susceptible
+.sir-susceptible
 {
   background-color: blue;
 }
 
-#sir-infected
+.sir-infected
 {
   background-color: red;
 }
 
-#sir-dead
+.sir-dead
 {
   background-color: black;
+}
+
+.legend
+{
+    list-decoration: none;
+    color: white;
+    padding: 0;
+    width: 90%;
 }

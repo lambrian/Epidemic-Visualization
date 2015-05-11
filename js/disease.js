@@ -9,7 +9,7 @@ function reset(cy) {
 
 function simulate (cy, infectionRate, infectionDuration, mortalityRate, numberInitialInfected) {
 
-  MAX_ITERATIONS = 100;
+  MAX_ITERATIONS = 1000;
   // mark all as susceptible
   cy.nodes().forEach(function(u) {
     u.data('status', 'susceptible');
