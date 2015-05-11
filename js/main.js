@@ -1,4 +1,4 @@
 $(function() {
-  var network = loadInitialNetwork(50);
-  simulate(cy, 0.1, 10, 0.1, 2)
+  var network = loadInitialNetwork(120);
+  simulate(cy, 0.2, 3, 0.1, 5)
 });

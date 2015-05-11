@@ -8,8 +8,9 @@ function loadInitialNetwork (numNodes) { // on dom ready
     .selector('node')
     .css({
       'content': 'data(id)',
-      'width' : 4,
-      'height': 4
+      'width' : 6,
+      'height': 6,
+      'font-size': 0, 
 
     })
     .selector('edge')
@@ -19,7 +20,7 @@ function loadInitialNetwork (numNodes) { // on dom ready
     })
     .selector('[status = "susceptible"]')
     .css({
-      'background-color': 'yellow'
+      'background-color': 'blue'
     })
     .selector('[status = "infected"]')
     .css({
@@ -34,7 +35,9 @@ function loadInitialNetwork (numNodes) { // on dom ready
       'background-color': 'black'
     }),
 
-    elements: graph});
+    elements: graph,
+    hideLabelsOnViewport: true
+  });
 
   var options = {
     name: 'cose',
